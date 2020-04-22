@@ -1,0 +1,91 @@
+Parking App
+
+- Manager App
+- Valle App
+
+##	Valle App
+- User ID and password for Valle
+- Valle Name
+- Generate Token ID
+- Customer Name
+- Store Customer Number
+- Store Customer Car NUmber
+- Accept/Reject job from Manager
+- Option to Cancel job with reason
+- Pending jobs ststus
+- Free parking status
+- Provide Parking location
+- Provide ways to edit parking loacktion if not available.
+- Car pickup OTP
+- Car return OTP
+
+##	Manager App
+- User ID and password for manager
+- Track all Valle status
+- Track all Customer cars status(location)
+- Store Customer Name
+- Store Customer Car Number
+- Push job to Valle
+- Job completion notification
+- pending job status
+- Option to cancel job with reason 
+- Status of assigned job to Valle
+- Free Parking status
+
+- Manager creates the group to which Valle joins/added
+- Group has Group ID(Random) and Group password to add multiple Managers
+- Manager creates parkings initially. (Ascending / Manual naming)
+
+............................Database......................
+ 	
+User Details
+ 	- sr_id
+ 	- group_id
+ 	- user_id
+ 	- firstname
+ 	- lastname
+ 	- phone_no
+ 	- email
+ 	- user_type
+ 	- reg_date
+
+Parking Details
+	- sr_id
+	- group_id
+	- parking_id
+	- parking_status
+	- reg_date
+
+Job Details
+	- sr_id
+	- group_id
+	- job_id
+	- user_id
+	- parking_id
+	- job_status
+	- in_time
+	- out_time
+	- customer_name
+	- customer_phone
+	- customer_car_no
+	- customer_license
+	- reg_time
+
+............................PHP......................
+* Create a initial Job for collecting customer data
+	create_job.php
+		INPUT
+			- group_id
+			- user_id
+			- in_time = timestamp
+			- customer_name
+			- customer_phone
+			- customer_car_no
+			- customer_license
+			- job_status = COLLECTING DATA
+
+		OUTPUT:
+			
+
+* 
+

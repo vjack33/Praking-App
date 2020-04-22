@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Parking App</string>
+
+    <string name="title_activity_sign_in">SignInActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
