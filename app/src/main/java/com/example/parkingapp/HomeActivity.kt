@@ -49,7 +49,7 @@ class HomeActivity : AppCompatActivity() {
             var customerPhoneNo = editTextcustomerPhoneNo.text
             var customerCarNo = editTextCustomerCarNo.text
             var customerLicense = editTextCustomerLicense.text
-            val myUrl = "http://192.168.1.100/parking_app/create_job.php?" +
+            val myUrl = "http://192.168.43.100/parking_app/create_job.php?" +
                     "group_id=121&user_id=1&" +
                     "customer_name=" + customerName +
                     "&customer_phone=" + customerPhoneNo +

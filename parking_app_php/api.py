@@ -2,6 +2,7 @@
 print("Content-Type: json\n")
 
 import mysql.connector
+import json
 
 
 mydb = mysql.connector.connect(
@@ -16,7 +17,7 @@ mycursor.execute("SELECT * FROM my_jobs INNER JOIN my_parkings ON my_parkings.pa
 result = mycursor.fetchall()
 for row in result:
       print(row)
-var json_str = json.dumps(mydb, indent=4)
-print(json_str)
+#json_str = json.dumps(mydb)
+#print(json_str)
 
-print ("Hello Python Web Browser!! This is cool!!")
+json.dump("Hello Python Web Browser!! This is cool!!")
