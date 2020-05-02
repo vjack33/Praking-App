@@ -3,6 +3,11 @@ Parking App
 - Manager App
 - Valle App
 
+********************Requiremants*************************
+flask
+flask_restful
+flask_mysqldb
+
 ##	Valle App
 - User ID and password for Valle
 - Valle Name
@@ -73,19 +78,146 @@ Job Details
 
 ............................PHP......................
 * Create a initial Job for collecting customer data
-	create_job.php
-		INPUT
-			- group_id
-			- user_id
-			- in_time = timestamp
-			- customer_name
-			- customer_phone
-			- customer_car_no
-			- customer_license
-			- job_status = COLLECTING DATA
+	Userdata
+		GET -  For fetching user details
+			INPUT
+				- user_id
+			OUTPUT
+				- group_id
+				- user_id
+				- firstname
+				- lastname
+				- phone_no
+				- email
+				- user_type
+				- reg_date
 
-		OUTPUT:
-			
+		POST - For creating user id
+			INPUT
+				- group_id
+				- user_id
+				- firstname
+				- lastname
+				- phone_no
+				- email
+				- user_type
+				- reg_date (auto)
+			OUTPUT
+				- user id alredy teken
+				- success creating user id
 
-* 
+		PUT - For editing user details
+			INPUT
+				- group_id
+				- user_id
+				- firstname
+				- lastname
+				- phone_no
+				- email
+				- user_type
+				- mod_date (auto)
+
+			OUTPUT:
+				- success or failure
+
+		DELETE - For deleting user details
+			INPUT
+				- user_id
+			OUTPUT
+				- success or failure
+
+
+	Parkingdata
+		GET - For getting parking details for given group
+			INPUT
+				- group_id
+			OUTPUT
+				- group_id
+				- parking_id
+				- parking_status
+		
+		POST - For adding new parking spots
+			INPUT
+				- group_id
+				- parking_id
+				- parking_status
+				- mod_by
+			OUTPUT
+				- success or failure
+		
+		PUT - Editing parking status (Free / Full)
+			INPUT
+				- group_id
+				- parking_id
+				- parking_status
+				- mod_by
+			OUTPUT
+				- success or failure
+		
+		DELETE - TO delete the whole parking 
+			INPUT
+				- group_id
+				- parking_id
+			OUTPUT
+				- success or failure
+
+	Jobdata
+		GET - FOr fetching job details
+			INPUT
+				- group_id
+				- job_id
+			OUTPUT
+				- group_id
+				- job_id
+				- user_id
+				- parking_id
+				- job_status
+				- in_time
+				- out_time
+				- customer_name
+				- customer_phone
+				- customer_car_no
+				- customer_license
+				- reg_date
+		
+		POST - For creating job
+			INPUT
+				- group_id
+				- job_id
+				- user_id
+				- parking_id
+				- job_status
+				- in_time
+				- out_time
+				- customer_name
+				- customer_phone
+				- customer_car_no
+				- customer_license
+				- reg_date		
+			OUTPUT
+				- success or failure
+
+		PUT - For updating job status
+			INPUT
+				- group_id
+				- job_id
+				- user_id
+				- parking_id
+				- job_status
+				- in_time
+				- out_time
+				- customer_name
+				- customer_phone
+				- customer_car_no
+				- customer_license
+				- reg_date		
+			OUTPUT
+				- success or failure
+
+		DELETE - for deletiing job
+			INPUT
+				- group_id
+				- job_id
+			OUTPUT
+				- success or failure
 

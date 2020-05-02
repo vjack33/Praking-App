@@ -2,6 +2,7 @@ package com.example.parkingapp
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.util.Log.e
@@ -17,10 +18,6 @@ import com.google.android.gms.tasks.Task
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
 class SignInActivity : AppCompatActivity() {
     val RC_SIGN_IN: Int = 1
     lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -41,7 +38,7 @@ class SignInActivity : AppCompatActivity() {
         var userEmail = account.email
         Toast.makeText(this, userName + " " + userEmail, Toast.LENGTH_SHORT).show()
 
-        val intent = Intent(this, HomeActivity::class.java)
+        val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
     }
 

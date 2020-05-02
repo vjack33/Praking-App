@@ -1,6 +1,5 @@
 package com.example.parkingapp
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,8 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import kotlinx.android.synthetic.main.activity_home.*
-import java.sql.Types.NULL
-import kotlin.concurrent.thread
 
 
 class HomeActivity : AppCompatActivity() {
@@ -22,6 +19,16 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        /*val account = GoogleSignIn.getLastSignedInAccount(this)
+        if (account != null) {
+            val personName: String? = account.displayName
+            val personGivenName: String? = account.givenName
+            val personFamilyName: String? = account.familyName
+            val personEmail: String? = account.email
+            val personId: String? = account.id
+            val personPhoto: Uri? = account.photoUrl
+        }*/
+
         val account = GoogleSignIn.getLastSignedInAccount(this)
         if (account != null) {
             val personName: String? = account.displayName
@@ -30,8 +37,23 @@ class HomeActivity : AppCompatActivity() {
             val personEmail: String? = account.email
             val personId: String? = account.id
             val personPhoto: Uri? = account.photoUrl
+            try {
+                val myUrl = "http://192.168.43.100/users/" + personEmail +"?" +
+                        "group_id=121&" +
+                        "user_id=" + personEmail +
+                        "&firstname=" + personGivenName +
+                        "&lastname=" + personFamilyName
+                var  myMethod = "POST"
+
+                getAPIData(myUrl, myMethod)
+            }
+            catch (e: Exception) {
+                Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,31 +67,39 @@ class HomeActivity : AppCompatActivity() {
         }
 
         buttonAddCustomer.setOnClickListener {
-            var customerName = editTextCustomerName.text
-            var customerPhoneNo = editTextcustomerPhoneNo.text
-            var customerCarNo = editTextCustomerCarNo.text
-            var customerLicense = editTextCustomerLicense.text
-            val myUrl = "http://192.168.43.100/parking_app/create_job.php?" +
-                    "group_id=121&user_id=1&" +
-                    "customer_name=" + customerName +
-                    "&customer_phone=" + customerPhoneNo +
-                    "&customer_car_no=" + customerCarNo +
-                    "&customer_license=" + customerLicense
-            getAPIData(myUrl)
+            val account = GoogleSignIn.getLastSignedInAccount(this)
+            if (account != null) {
+                val personName: String? = account.displayName
+                val personGivenName: String? = account.givenName
+                val personFamilyName: String? = account.familyName
+                val personEmail: String? = account.email
+                val personId: String? = account.id
+                val personPhoto: Uri? = account.photoUrl
+                try {
+                    val myUrl = "http://192.168.5.100/users/" + personEmail +"?" +
+                            "group_id=121&" +
+                            "user_id=" + personEmail +
+                            "&firstname=" + personGivenName +
+                            "&lastname=" + personFamilyName
+                    val myMethod = "POST"
+
+                    getAPIData(myUrl, myMethod)
+                }
+                catch (e: Exception) {
+                    Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show()
+                }
+
+            }
         }
     }
 
-    private fun getAPIData(myUrl : String) {
+    private fun getAPIData(myUrl: String, myMethod: String) {
         //val myUrl = "http://192.168.1.103/parking_app/api.py"
         try {
-            val task = MyAsyncTask(this)
+            val task = MyAsyncTaskHome(this)
             //task.execute(myUrl)
-            var testResponse = task.execute(myUrl)
+            var testResponse = task.execute(myUrl,myMethod)
             Toast.makeText(this, testResponse.get().toString(), Toast.LENGTH_SHORT).show()
-        }
-        catch (e: InterruptedException) {
-            e.printStackTrace()
-            Toast.makeText(this, "ERROR", Toast.LENGTH_SHORT).show()
         }
         catch (e: Exception) {
             e.printStackTrace()
